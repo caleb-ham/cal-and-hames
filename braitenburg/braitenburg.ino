@@ -8,6 +8,7 @@ int rightValue = 0;
 const int ldrPinLeft = A2; 
 const int ldrPinRight = A1;
 
+//I am caleb and i am a big stinky
 
 void setup() {
   Serial.begin(9600);
@@ -38,7 +39,7 @@ void loop() {
       Serial.print(ldrStatusLeft);
       Serial.print(",");
   }
-  if (ldrStatusRight < 1015) {
+  else if (ldrStatusRight < 1015) {
       rightServo.write(90);
       Serial.print(ldrStatusRight);
 
