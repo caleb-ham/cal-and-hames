@@ -26,20 +26,27 @@ void loop() {
   // sensor values between 50..900
   leftValue = (analogRead(0) - 50) / 50;
   rightValue = (analogRead(1) - 50) / 50;
-  leftServo.write(89 + rightValue);
-  rightServo.write(89 - leftValue);
+  //leftServo.write(89 + rightValue);
+  //rightServo.write(89 - leftValue);
   delay(10);
 
+  ldrStatusLeft = map(ldrStatusLeft, 100, 900, 0, 10);
+  ldrStatusRight = map(ldrStatusRight, 100, 900, 0, 10);
+  
   Serial.print(ldrStatusLeft);
+  Serial.print(",");
   Serial.print(ldrStatusRight);
+  Serial.println();
 
-  if (ldrStatusLeft < 1015) {
-      leftServo.write(90);
+
+
+  if (ldrStatusLeft > 2) {
+      leftServo.write(180 * ldrStatusLeft/10);
       Serial.print(ldrStatusLeft);
       Serial.print(",");
   }
-  if (ldrStatusRight < 1015) {
-      rightServo.write(90);
+  if (ldrStatusRight > 2) {
+      rightServo.write(180 * ldrStatusRight/10);
       Serial.print(ldrStatusRight);
 
   Serial.println();
